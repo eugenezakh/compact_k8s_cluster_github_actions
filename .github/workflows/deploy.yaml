@@ -23,8 +23,8 @@ jobs:
       - name: Testing
         run: >
           echo "Kube version: $(kubectl version --short)" >> KinD.log
-          echo "Nodes: $(kubectl get nodes -A)" >> KinD.log
-          echo "Total nodes: $(kubectl get nodes -A | grep -c 'NAME')" >> KinD.log"
+          echo "Nodes: $(kubectl get nodes)" >> KinD.log
+          echo "Total nodes: $(kubectl get nodes | grep -c 'NAME')" >> KinD.log"
           diff=$(( ${{ steps.end_time.outputs.END_TIME }} - ${{ steps.start_time.outputs.START_TIME }}))
           echo "Deploying time: $diff seconds" >> KinD.log
       - name: Report
