@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: KinD deployment start time
         id: start_time
-        run: |
+	run: | 
 	  echo "START_TIME=$(date '+%s')" >> $GITHUB_OUTPUT
 
       - name: Start KinD deployment
@@ -19,11 +19,11 @@ jobs:
 		  
       - name: KinD deployment end time
 	id: end_time
-	run: |
+	run: | 
 	  echo "END_TIME=$(date '+%s')" >> $GITHUB_OUTPUT
 		
       - name: Testing
-        run: |
+        run: | 
           echo "Kube version: $(kubectl version --short)" >> KinD.log
           echo "Nodes: $(kubectl get nodes -A)" >> KinD.log
 	  echo "Total nodes: $(kubectl get nodes | grep -c 'NAME')" >> KinD.log"
@@ -41,7 +41,7 @@ jobs:
     steps:
       - name: minikube deployment start time
         id: start_time
-        run: |
+        run: | 
 	  echo "START_TIME=$(date '+%s')" >> $GITHUB_OUTPUT
 		
       - name: Start minikube deployment
@@ -49,11 +49,11 @@ jobs:
 
       - name: minikube deployment end time
         id: end_time
-        run: |
+        run: | 
 	  echo "END_TIME=$(date '+%s')" >> $GITHUB_OUTPUT
 
       - name: Result
-        run: |           
+        run: | 
           echo "Version:" >> minikube.log
           echo "$(kubectl version --short)" >> minikube.log
           echo "Node count: $(kubectl get nodes | grep -c 'NAME')" >> minikube.log
