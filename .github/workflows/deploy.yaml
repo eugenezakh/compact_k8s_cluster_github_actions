@@ -24,7 +24,7 @@ jobs:
         run: >
           echo "Kube version: $(kubectl version --short)" >> KinD.log
           echo "Nodes: $(kubectl get nodes)" >> KinD.log
-          echo "Total nodes: $(kubectl get nodes | grep -c 'NAME')" >> KinD.log"
+          echo "Total nodes: $(kubectl get node | grep -c 'Ready')" >> KinD.log"
           diff=$(( ${{ steps.end_time.outputs.END_TIME }} - ${{ steps.start_time.outputs.START_TIME }}))
           echo "Deploying time: $diff seconds" >> KinD.log
       - name: Report
@@ -49,7 +49,7 @@ jobs:
         run: >
           echo "Version:" >> minikube.log
           echo "$(kubectl version --short)" >> minikube.log
-          echo "Node count: $(kubectl get nodes | grep -c 'NAME')" >> minikube.log
+          echo "Node count: $(kubectl get node | grep -c 'Ready')" >> minikube.log
           diff=$(( ${{ steps.end_time.outputs.END_TIME }} - ${{ steps.start_time.outputs.START_TIME }}))
           echo "Deploying time: $diff seconds" >> minikube.log
       - name: Report
