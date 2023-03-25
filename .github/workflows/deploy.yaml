@@ -9,8 +9,9 @@ jobs:
     steps:
       - name: KinD deployment start time
         id: start_time
-        run: echo "START_TIME=$(date '+%s')" >> $GITHUB_OUTPUT
-		
+        run: |
+	  echo "START_TIME=$(date '+%s')" >> $GITHUB_OUTPUT
+
       - name: Start KinD deployment
         uses: engineerd/setup-kind@v0.5.0
         with:
@@ -18,7 +19,8 @@ jobs:
 		  
       - name: KinD deployment end time
 	id: end_time
-	run: echo "END_TIME=$(date '+%s')" >> $GITHUB_OUTPUT
+	run: |
+	  echo "END_TIME=$(date '+%s')" >> $GITHUB_OUTPUT
 		
       - name: Testing
         run: |
@@ -39,14 +41,16 @@ jobs:
     steps:
       - name: minikube deployment start time
         id: start_time
-        run: echo "START_TIME=$(date '+%s')" >> $GITHUB_OUTPUT
+        run: |
+	  echo "START_TIME=$(date '+%s')" >> $GITHUB_OUTPUT
 		
       - name: Start minikube deployment
         uses: medyagh/setup-minikube@latest
 
       - name: minikube deployment end time
         id: end_time
-        run: echo "END_TIME=$(date '+%s')" >> $GITHUB_OUTPUT
+        run: |
+	  echo "END_TIME=$(date '+%s')" >> $GITHUB_OUTPUT
 
       - name: Result
         run: |           
