@@ -22,11 +22,10 @@ jobs:
           echo "END_TIME=$(date '+%s')" >> $GITHUB_OUTPUT
       - name: Testing
         run: >
-          echo "Kube version: $(kubectl cluster-info)" >> KinD.log
-          echo "Nodes: $(kubectl get nodes)" >> KinD.log
-          echo "Total nodes: $(kubectl get nodes | grep -c 'Ready')" >> KinD.log
-          diff=$(( ${{ steps.end_time.outputs.END_TIME }} - ${{ steps.start_time.outputs.START_TIME }}))
-          echo "Deploying time: $diff seconds" >> KinD.log
+          echo "Kube version: $(kubectl cluster-info) \n" >> KinD.log
+          echo "Nodes: $(kubectl get nodes) \n" >> KinD.log
+          echo "Total nodes: $(kubectl get nodes | grep -c 'Ready') \n" >> KinD.log
+          echo "Deploying time: $(( ${{ steps.end_time.outputs.END_TIME }} - ${{ steps.start_time.outputs.START_TIME }})) seconds" >> KinD.log
       - name: Report
         uses: actions/upload-artifact@v3
         with:
@@ -48,11 +47,10 @@ jobs:
       - name: Result
         run: >
           echo "Version:" >> minikube.log
-          echo "$(kubectl version --short)" >> minikube.log
-          echo "Node count: $(kubectl get nodes | grep -c 'Ready')" >> minikube.log
-          diff=$(( ${{ steps.end_time.outputs.END_TIME }} - ${{ steps.start_time.outputs.START_TIME }}))
-          echo "Deploying time: $diff seconds" >> minikube.log
+          echo "$(kubectl version --short) \n" >> minikube.log
+          echo "Node count: $(kubectl get nodes | grep -c 'Ready') \n" >> minikube.log
+          echo "Deploying time: $(( ${{ steps.end_time.outputs.END_TIME }} - ${{ steps.start_time.outputs.START_TIME }})) seconds" >> minikube.log
       - name: Report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           path: minikube.log
